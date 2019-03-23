@@ -2,17 +2,19 @@ package br.com.caelum.casadocodigoapp.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.caelum.casadocodigoapp.R
 import br.com.caelum.casadocodigoapp.adapter.LivroAdapter
-import br.com.caelum.casadocodigoapp.modelo.Livro
+import br.com.caelum.casadocodigoapp.vm.LivroViewModel
 import kotlinx.android.synthetic.main.lista_livros_fragment.view.*
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 class ListaLivrosFragment : Fragment() {
+
+    private val livroViewModel: LivroViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,19 +24,7 @@ class ListaLivrosFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.lista_livros_fragment, container, false)
 
-        val livros = arrayListOf<Livro>(
-            Livro("Kotlin"),
-            Livro("Android"),
-            Livro("Ruby"),
-            Livro("Sapiens"),
-            Livro("Destiny"),
-            Livro("Java"),
-            Livro("IOS"),
-            Livro("Go"),
-            Livro("Python"),
-            Livro("C#")
-        )
-
+        val livros = livroViewModel.getLivros()
 
         view.listaLivros.adapter = LivroAdapter(livros)
 
