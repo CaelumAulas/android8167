@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.caelum.casadocodigoapp.R
 import br.com.caelum.casadocodigoapp.adapter.LivroAdapter
+import br.com.caelum.casadocodigoapp.modelo.Livro
 import br.com.caelum.casadocodigoapp.vm.LivroViewModel
 import kotlinx.android.synthetic.main.lista_livros_fragment.view.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
-class ListaLivrosFragment : Fragment() {
+class ListaLivrosFragment : Fragment(), LivroAdapter.LivroListener {
+
+
 
     private val livroViewModel: LivroViewModel by sharedViewModel()
 
@@ -26,11 +29,18 @@ class ListaLivrosFragment : Fragment() {
 
         val livros = livroViewModel.getLivros()
 
-        view.listaLivros.adapter = LivroAdapter(livros)
+        view.listaLivros.adapter = LivroAdapter(livros, this)
 
         view.listaLivros.layoutManager = LinearLayoutManager(context)
 
         return view
 
     }
+
+    override fun onClick(livro: Livro) {
+
+        livroViewModel.seleciona(livro)
+
+    }
+
 }

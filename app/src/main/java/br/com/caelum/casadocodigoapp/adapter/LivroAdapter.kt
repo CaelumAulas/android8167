@@ -8,7 +8,7 @@ import br.com.caelum.casadocodigoapp.R
 import br.com.caelum.casadocodigoapp.modelo.Livro
 import kotlinx.android.synthetic.main.item_livro.view.*
 
-class LivroAdapter(val livros: ArrayList<Livro>) :
+class LivroAdapter(val livros: ArrayList<Livro>, val listener: LivroListener) :
     RecyclerView.Adapter<LivroAdapter.LivroViewHolder>() {
 
 
@@ -28,7 +28,7 @@ class LivroAdapter(val livros: ArrayList<Livro>) :
     override fun onBindViewHolder(holder: LivroViewHolder, position: Int) {
         val livro = livros[position]
 
-        holder.bind(livro)
+        holder.bind(livro, listener)
 
     }
 
@@ -36,9 +36,19 @@ class LivroAdapter(val livros: ArrayList<Livro>) :
 
         private val nome = view.item_nome
 
-        fun bind(livro: Livro) {
+        fun bind(livro: Livro, listener: LivroListener) {
+
+            view.setOnClickListener {
+                listener.onClick(livro)
+            }
+
             nome.text = livro.titulo
         }
+    }
+
+    interface LivroListener {
+
+        fun onClick(livro: Livro)
     }
 
 }
