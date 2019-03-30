@@ -2,6 +2,7 @@ package br.com.caelum.casadocodigoapp.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,14 @@ class ListaLivrosFragment : Fragment(), LivroAdapter.LivroListener {
 
         return view
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val activity = activity as AppCompatActivity
+        activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        activity.title = "Lista de Livros"
+        activity.supportActionBar?.subtitle = ""
     }
 
     override fun onClick(livro: Livro) {

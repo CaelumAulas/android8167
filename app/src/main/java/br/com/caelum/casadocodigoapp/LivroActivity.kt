@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.MenuItem
 import br.com.caelum.casadocodigoapp.fragment.DetalhesDoLivroFragment
 import br.com.caelum.casadocodigoapp.fragment.ListaLivrosFragment
 import br.com.caelum.casadocodigoapp.vm.LivroViewModel
@@ -37,6 +38,20 @@ class LivroActivity : AppCompatActivity() {
 
         transaction.commit()
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+            }
+            else -> {
+            }
+        }
+
+        return true
+    }
+
 
     override fun onBackPressed() {
         super.onBackPressed()
