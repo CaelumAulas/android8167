@@ -1,6 +1,5 @@
 package br.com.caelum.casadocodigoapp.infra
 
-import android.util.Log
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
