@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.caelum.casadocodigoapp.R
+import br.com.caelum.casadocodigoapp.infra.CarregadorDeFoto
 import br.com.caelum.casadocodigoapp.modelo.Livro
-import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.detalhes_fragment.view.*
 import kotlinx.android.synthetic.main.item_livro.view.*
 
 class LivroAdapter(val livros: List<Livro>, val listener: LivroListener) :
@@ -44,7 +45,7 @@ class LivroAdapter(val livros: List<Livro>, val listener: LivroListener) :
                 listener.onClick(livro)
             }
 
-            Picasso.get().load(livro.imagem).fit().into(foto)
+            CarregadorDeFoto.carrega(livro.imagem!!, foto)
 
             nome.text = livro.titulo
         }
