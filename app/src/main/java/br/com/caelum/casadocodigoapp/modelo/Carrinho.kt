@@ -18,4 +18,8 @@ class Carrinho {
         return Collections.unmodifiableList(itens)
     }
 
+    fun getValorTotal(): Double {
+        return itens.sumByDouble { item -> item.getValor() }
+    }
+
 }
