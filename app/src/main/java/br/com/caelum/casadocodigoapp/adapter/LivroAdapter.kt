@@ -36,12 +36,16 @@ class LivroAdapter(val livros: List<Livro>, val listener: LivroListener) :
     class LivroViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         private val nome = view.item_nome
+        private val foto = view.item_imagem
 
         fun bind(livro: Livro, listener: LivroListener) {
 
             view.setOnClickListener {
                 listener.onClick(livro)
             }
+
+            Picasso.get().load(livro.imagem).fit().into(foto)
+
             nome.text = livro.titulo
         }
     }

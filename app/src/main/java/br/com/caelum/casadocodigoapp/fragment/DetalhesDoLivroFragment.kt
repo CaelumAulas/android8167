@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.caelum.casadocodigoapp.R
 import br.com.caelum.casadocodigoapp.vm.LivroViewModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.detalhes_fragment.view.*
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -36,6 +37,8 @@ class DetalhesDoLivroFragment : Fragment() {
 
 
         val view = inflater.inflate(R.layout.detalhes_fragment, container, false)
+
+        Picasso.get().load(livro.imagem).fit().into(view.foto_livro_detalhes)
 
         view.nome_livro_detalhes.text = livro.titulo
 
