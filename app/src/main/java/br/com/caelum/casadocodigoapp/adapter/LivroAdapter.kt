@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.caelum.casadocodigoapp.R
 import br.com.caelum.casadocodigoapp.modelo.Livro
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_livro.view.*
 
-class LivroAdapter(val livros: ArrayList<Livro>, val listener: LivroListener) :
+class LivroAdapter(val livros: List<Livro>, val listener: LivroListener) :
     RecyclerView.Adapter<LivroAdapter.LivroViewHolder>() {
 
 
@@ -41,7 +42,6 @@ class LivroAdapter(val livros: ArrayList<Livro>, val listener: LivroListener) :
             view.setOnClickListener {
                 listener.onClick(livro)
             }
-
             nome.text = livro.titulo
         }
     }

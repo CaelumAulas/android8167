@@ -28,7 +28,7 @@ class ListaLivrosFragment : Fragment(), LivroAdapter.LivroListener {
 
         val view = inflater.inflate(R.layout.lista_livros_fragment, container, false)
 
-        val livros = livroViewModel.getLivros()
+        val livros = livroViewModel.livros.value!!
 
         view.listaLivros.adapter = LivroAdapter(livros, this)
 

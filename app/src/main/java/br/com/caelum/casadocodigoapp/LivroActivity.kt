@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.MenuItem
 import br.com.caelum.casadocodigoapp.fragment.DetalhesDoLivroFragment
 import br.com.caelum.casadocodigoapp.fragment.ListaLivrosFragment
+import br.com.caelum.casadocodigoapp.fragment.LoadingFragment
 import br.com.caelum.casadocodigoapp.vm.LivroViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -18,7 +19,14 @@ class LivroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        exibe(ListaLivrosFragment(), false)
+
+        if (savedInstanceState == null)
+            exibe(LoadingFragment(), false)
+
+
+        livroViewModel.livros.observe(this, Observer {
+            exibe(ListaLivrosFragment(), false)
+        })
 
 
         livroViewModel.livro.observe(this, Observer { livro ->

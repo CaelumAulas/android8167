@@ -1,8 +1,10 @@
 package br.com.caelum.casadocodigoapp.modelo
 
+import com.google.gson.annotations.SerializedName
+
 data class Autor(
-    val nome: String,
-    val detalhes: String,
-    val imagem: String,
-    val id: Long
+    @SerializedName("nomeAutor") val nome: String,
+    @SerializedName("detalhesAutor") val detalhes: String,
+    @SerializedName("imagemAutor") val imagem: String,
+    @SerializedName("idAutor") val id: Long
 )
