@@ -22,4 +22,8 @@ class Carrinho {
         return itens.sumByDouble { item -> item.getValor() }
     }
 
+    fun limpa() {
+        itens.clear()
+    }
+
 }

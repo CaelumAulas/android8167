@@ -9,7 +9,7 @@ data class Livro(
     val isbn: String = "",
     @SerializedName("valorFisico") val precoFisico: Double = 0.0,
     @SerializedName("valorVirtual") val precoVirtual: Double = 0.0,
-    @SerializedName("valorAmbos") val precoAmbos: Double = 0.0,
+    @SerializedName("valorVirtualComFisico") val precoAmbos: Double = 0.0,
     val dataPublicacao: String = "",
     val numeroPaginas: String = "",
     val id: Long = 0,

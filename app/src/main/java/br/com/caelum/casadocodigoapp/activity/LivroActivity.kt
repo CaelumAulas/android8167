@@ -1,10 +1,13 @@
-package br.com.caelum.casadocodigoapp
+package br.com.caelum.casadocodigoapp.activity
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.Menu
 import android.view.MenuItem
+import br.com.caelum.casadocodigoapp.R
 import br.com.caelum.casadocodigoapp.fragment.DetalhesDoLivroFragment
 import br.com.caelum.casadocodigoapp.fragment.ListaLivrosFragment
 import br.com.caelum.casadocodigoapp.fragment.LoadingFragment
@@ -47,11 +50,24 @@ class LivroActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.livro_menu, menu)
+        return true
+    }
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
+            }
+            R.id.carrinho -> {
+
+                val irParaCarrinho = Intent(this, CarrinhoActivity::class.java)
+                startActivity(irParaCarrinho)
+
             }
             else -> {
             }
