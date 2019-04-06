@@ -2,11 +2,14 @@ package br.com.caelum.casadocodigoapp.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import br.com.caelum.casadocodigoapp.R
+import br.com.caelum.casadocodigoapp.adapter.ItemAdapter
 import br.com.caelum.casadocodigoapp.modelo.Carrinho
+import kotlinx.android.synthetic.main.activity_carrinho.*
 import org.koin.android.ext.android.inject
 
 class CarrinhoActivity : AppCompatActivity() {
@@ -18,6 +21,10 @@ class CarrinhoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_carrinho)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.subtitle = "Total R$${carrinho.getValorTotal()}"
+
+        listaItens.adapter = ItemAdapter(carrinho.getItens())
+        listaItens.layoutManager = LinearLayoutManager(this)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

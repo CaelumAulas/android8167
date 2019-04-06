@@ -1,5 +1,8 @@
 package br.com.caelum.casadocodigoapp.modelo
 
+import java.math.BigDecimal
+import java.math.MathContext
+import java.math.RoundingMode
 import java.util.*
 
 class Carrinho {
@@ -14,12 +17,14 @@ class Carrinho {
         itens.remove(item)
     }
 
-    fun getItens(): MutableList<Item>? {
+    fun getItens(): List<Item> {
         return Collections.unmodifiableList(itens)
     }
 
-    fun getValorTotal(): Double {
-        return itens.sumByDouble { item -> item.getValor() }
+    fun getValorTotal(): BigDecimal {
+        val price = itens.sumByDouble { item -> item.getValor() }.toBigDecimal()
+        price.setScale(2, RoundingMode.UP)
+        return price.round(MathContext.DECIMAL32)
     }
 
     fun limpa() {
