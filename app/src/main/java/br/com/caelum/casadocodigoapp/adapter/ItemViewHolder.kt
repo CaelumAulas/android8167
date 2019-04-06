@@ -9,13 +9,21 @@ import br.com.caelum.casadocodigoapp.infra.CarregadorDeFoto
 import br.com.caelum.casadocodigoapp.modelo.Item
 import com.squareup.picasso.Picasso
 
-sealed class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+sealed class ItemViewHolder(
+    view: View,
+    private val listener: ItemListener
+) : RecyclerView.ViewHolder(view) {
 
     private val nome: TextView = view.findViewById(R.id.nomeItem)
     private val valor: TextView = view.findViewById(R.id.valorItem)
     private val imagem: ImageView = view.findViewById(R.id.fotoItem)
 
     fun popula(item: Item) {
+
+        itemView.setOnClickListener {
+            listener.onClick(item, adapterPosition)
+        }
+
         nome.text = item.livro.titulo
 
         valor.text = "R$ ${item.getValor()}"
@@ -24,8 +32,24 @@ sealed class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     }
 
-    class ItemFisicoViewHolder(view: View) : ItemViewHolder(view)
-    class ItemAmbosViewHolder(view: View) : ItemViewHolder(view)
-    class ItemVirtualViewHolder(view: View) : ItemViewHolder(view)
+    class ItemFisicoViewHolder(
+        view: View,
+        listener: ItemListener
+    ) : ItemViewHolder(view, listener)
 
+    class ItemAmbosViewHolder(
+        view: View,
+        listener: ItemListener
+    ) : ItemViewHolder(view, listener)
+
+    class ItemVirtualViewHolder(
+        view: View,
+        listener: ItemListener
+    ) : ItemViewHolder(view, listener)
+
+}
+
+
+interface ItemListener {
+    fun onClick(item: Item, position: Int)
 }

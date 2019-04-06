@@ -8,7 +8,8 @@ import br.com.caelum.casadocodigoapp.adapter.ItemViewHolder.*
 import br.com.caelum.casadocodigoapp.modelo.Item
 import br.com.caelum.casadocodigoapp.modelo.TipoDeLivro
 
-class ItemAdapter(private val itens: List<Item>) : RecyclerView.Adapter<ItemViewHolder>() {
+class ItemAdapter(private val itens: List<Item>, private val listener: ItemListener) :
+    RecyclerView.Adapter<ItemViewHolder>() {
 
     override fun getItemCount(): Int {
         return itens.size
@@ -21,16 +22,16 @@ class ItemAdapter(private val itens: List<Item>) : RecyclerView.Adapter<ItemView
         when (viewType) {
             1 -> {
                 val view = inflater.inflate(R.layout.item_livro_fisico, parent, false)
-                return ItemFisicoViewHolder(view)
+                return ItemFisicoViewHolder(view, listener)
             }
             2 -> {
                 val view = inflater.inflate(R.layout.item_livro_virtual, parent, false)
-                return ItemVirtualViewHolder(view)
+                return ItemVirtualViewHolder(view, listener)
 
             }
             else -> {
                 val view = inflater.inflate(R.layout.item_livro_ambos, parent, false)
-                return ItemAmbosViewHolder(view)
+                return ItemAmbosViewHolder(view, listener)
             }
         }
 
