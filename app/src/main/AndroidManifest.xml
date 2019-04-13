@@ -12,7 +12,8 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.LivroActivity">
+        <activity android:name=".activity.LoginActivity"
+                  android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,6 +21,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.LivroActivity"/>
         <activity android:name=".activity.CarrinhoActivity" android:label="Carrinho"/>
     </application>
 
