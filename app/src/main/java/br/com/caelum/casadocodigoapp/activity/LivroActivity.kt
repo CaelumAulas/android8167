@@ -12,6 +12,7 @@ import br.com.caelum.casadocodigoapp.fragment.DetalhesDoLivroFragment
 import br.com.caelum.casadocodigoapp.fragment.ListaLivrosFragment
 import br.com.caelum.casadocodigoapp.fragment.LoadingFragment
 import br.com.caelum.casadocodigoapp.vm.LivroViewModel
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LivroActivity : AppCompatActivity() {
@@ -68,6 +69,15 @@ class LivroActivity : AppCompatActivity() {
                 val irParaCarrinho = Intent(this, CarrinhoActivity::class.java)
                 startActivity(irParaCarrinho)
 
+            }
+
+            R.id.logout -> {
+
+                FirebaseAuth.getInstance().signOut()
+
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
             }
             else -> {
             }

@@ -15,6 +15,11 @@ class LoginActivity : AppCompatActivity() {
 
         val auth = FirebaseAuth.getInstance()
 
+
+        if (estaLogado(auth)) {
+            trocaTela()
+        }
+
         login_novo.setOnClickListener {
 
             val (email, senha) = usuarioDaTela()
@@ -43,6 +48,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun estaLogado(auth: FirebaseAuth) = auth.currentUser != null
 
     private fun trocaTela() {
         val vaiParaLista = Intent(this, LivroActivity::class.java)

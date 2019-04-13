@@ -6,4 +6,8 @@
           android:id="@+id/carrinho"
           app:showAsAction="always"/>
 
+    <item
+            android:id="@+id/logout"
+            android:title="Logout"/>
+
 </menu>
