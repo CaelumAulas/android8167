@@ -17,19 +17,42 @@ class LoginActivity : AppCompatActivity() {
 
         login_novo.setOnClickListener {
 
-            val email = login_email.text.toString()
-            val senha = login_senha.text.toString()
+            val (email, senha) = usuarioDaTela()
 
             auth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener { task ->
 
                     if (task.isSuccessful) {
-                        val vaiParaLista = Intent(this, LivroActivity::class.java)
-                        startActivity(vaiParaLista)
-                        finish()
+                        trocaTela()
                     }
                 }
         }
 
+
+        login_logar.setOnClickListener {
+
+            val (email, senha) = usuarioDaTela()
+
+            auth.signInWithEmailAndPassword(email, senha)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        trocaTela()
+                    }
+
+                }
+        }
+
+    }
+
+    private fun trocaTela() {
+        val vaiParaLista = Intent(this, LivroActivity::class.java)
+        startActivity(vaiParaLista)
+        finish()
+    }
+
+    private fun usuarioDaTela(): Pair<String, String> {
+        val email = login_email.text.toString()
+        val senha = login_senha.text.toString()
+        return Pair(email, senha)
     }
 }
