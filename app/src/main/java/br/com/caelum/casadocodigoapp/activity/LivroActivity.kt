@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import br.com.caelum.casadocodigoapp.R
 import br.com.caelum.casadocodigoapp.fragment.DetalhesDoLivroFragment
+import br.com.caelum.casadocodigoapp.fragment.ErroFragment
 import br.com.caelum.casadocodigoapp.fragment.ListaLivrosFragment
 import br.com.caelum.casadocodigoapp.fragment.LoadingFragment
 import br.com.caelum.casadocodigoapp.vm.LivroViewModel
@@ -27,6 +28,11 @@ class LivroActivity : AppCompatActivity() {
         if (savedInstanceState == null)
             exibe(LoadingFragment(), false)
 
+
+        livroViewModel.erro.observe(this, Observer { exception ->
+            if (exception != null)
+                exibe(ErroFragment(), false)
+        })
 
         livroViewModel.livros.observe(this, Observer {
             exibe(ListaLivrosFragment(), false)

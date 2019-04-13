@@ -21,12 +21,16 @@ class LivroViewModel(private val repository: LivroRepository) : ViewModel() {
                 val lista = repository.lista()
 
                 launch(Dispatchers.Main) {
+                    if (erro.value != null) {
+                        erro.value = null
+                    }
                     livros.value = lista
                 }
             } catch (e: Exception) {
-                erro.value = e
+                launch(Dispatchers.Main) {
+                    erro.value = e
+                }
             }
-
         }
 
     }
